@@ -55,7 +55,7 @@ fun CreateBizCard() {
                 .padding(12.dp),
             shape = RoundedCornerShape(corner = CornerSize(10.dp)),
             colors = CardDefaults.cardColors(containerColor = Color.White),
-            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp) // That's the way to do elevation
+            elevation = CardDefaults.cardElevation(defaultElevation = 10.dp) // That's the way to do elevation
         ) {
             // Add content inside the Card
             Text(text = "Hello, this is my BizCard!")
