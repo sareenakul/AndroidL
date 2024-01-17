@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -33,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
@@ -100,6 +102,24 @@ fun CreateBizCard() {
     }
 }
 
+@Preview
+@Composable
+fun Content(){
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .fillMaxHeight()
+        .padding(5.dp)){
+        Surface(modifier = Modifier.padding(3.dp)
+            .fillMaxWidth()
+            .fillMaxHeight(),
+            shape = RoundedCornerShape(20.dp),
+            border = BorderStroke(2.dp, Color.Gray)
+        ) {
+
+        }
+    }
+}
+
 @Composable
 private fun profileDescription() {
     Text(
@@ -150,7 +170,7 @@ private fun imageProfile(modifier: Modifier = Modifier) {
     }
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     MyPortfolioTheme {
