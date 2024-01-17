@@ -1,6 +1,7 @@
 package com.example.myportfolio
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -89,31 +90,41 @@ fun CreateBizCard() {
                 // Add content inside the Card
                 imageProfile()
                 Divider(color = Color.LightGray, thickness = 1.dp)
-                Text("Medley Diaries", modifier = Modifier
-                    .padding(10.dp),
-                    fontFamily = FontFamily.Cursive,
-                    fontStyle = FontStyle.Normal,
-                    fontWeight = FontWeight.W900,
-                    fontSize = 30.sp
-                )
-                Text("Full Stack Developer",
-                    fontFamily = FontFamily.Serif,
-                    fontStyle = FontStyle.Normal,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.DarkGray,
-                    fontSize = 15.sp
-                )
-                Divider(modifier = Modifier.width(170.dp))
-                Text("@medleydiaries", fontFamily = FontFamily.SansSerif)
-                Button(onClick = { /*TODO*/ },
-                    modifier = Modifier
-                        .width(150.dp)
-                        .padding(10.dp)) {
-                    Text("Check M3 Out!")
-                    
+                profileDescription()
+                Button(onClick = { Log.d("Clicked", "CreateBizCard: ") }) {
+                    Text("Portfolio",
+                        style = MaterialTheme.typography.labelMedium)
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun profileDescription() {
+    Text(
+        "Medley Diaries", modifier = Modifier
+            .padding(10.dp),
+        fontFamily = FontFamily.Cursive,
+        fontStyle = FontStyle.Normal,
+        fontWeight = FontWeight.W900,
+        fontSize = 30.sp
+    )
+    Column(modifier = Modifier.padding(5.dp)) {
+        Text(
+            "Full Stack Developer",
+            fontFamily = FontFamily.Serif,
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold,
+            color = Color.DarkGray,
+            fontSize = 15.sp
+        )
+        Divider(modifier = Modifier.width(170.dp))
+        Text(
+            "@medleydiaries",
+            fontFamily = FontFamily.SansSerif, style = MaterialTheme.typography.headlineSmall,
+            color = MaterialTheme.colorScheme.primary
+        )
     }
 }
 
