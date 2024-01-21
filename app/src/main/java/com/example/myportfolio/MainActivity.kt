@@ -7,9 +7,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,6 +28,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -38,9 +41,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -66,6 +71,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 
 @Composable
 fun CreateBizCard() {
@@ -111,9 +117,7 @@ fun CreateBizCard() {
                     Content()
                 }
                 else{
-                    Box(){
-
-                    }
+                    Box(){}
                 }
             }
         }
@@ -147,7 +151,25 @@ fun Content(){
 fun Portfolio(data: List<String>) {
     LazyColumn{
         items(data){ item ->
-            Text(item)
+            Card(modifier = Modifier
+                .background(Color.White)
+                .padding(13.dp)
+                .fillMaxWidth(),
+                shape = RectangleShape,
+                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp) ) {
+                Row(modifier = Modifier
+                    .padding(8.dp)
+                    .background(MaterialTheme.colorScheme.surface)
+                    .padding(7.dp)) {
+                    imageProfile(modifier = Modifier.size(100.dp))
+                    Column(modifier = Modifier.padding(20.dp).align(alignment = Alignment.CenterVertically)) {
+                        Text(text = item, fontWeight = FontWeight.Bold)
+                        Text(text = "This is the project description",
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
+                }
+            }
         }
     }
 }
@@ -183,7 +205,7 @@ private fun profileDescription() {
 @Composable
 private fun imageProfile(modifier: Modifier = Modifier) {
     Surface(
-        modifier = Modifier
+        modifier = modifier
             .size(150.dp)
             .padding(15.dp),
         shape = CircleShape,
@@ -194,7 +216,7 @@ private fun imageProfile(modifier: Modifier = Modifier) {
         Image(
             painter = painterResource(id = R.drawable.logo_copy),
             contentDescription = "logo_copy",
-            modifier = Modifier
+            modifier = modifier
                 .size(150.dp)
                 .clip(CircleShape),
             contentScale = ContentScale.Crop
